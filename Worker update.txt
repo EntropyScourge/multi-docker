@@ -1,0 +1,16 @@
+Required Worker Environment Variables
+In the next lecture, we will be adding a client and worker service. There is one required configuration update that needs to be made:
+
+1) When adding the "Worker" service, include the Redis host and port as environment variables:
+
+  worker:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./worker
+    volumes:
+      - /app/node_modules
+      - ./worker:/app
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+Otherwise, you will get a "Calculated Nothing Yet" error message.
