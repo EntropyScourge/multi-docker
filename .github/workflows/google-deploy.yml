@@ -39,10 +39,10 @@ on:
       - '"k8s"'
 
 env:
-  PROJECT_ID: 'multi-cluster' # TODO: update to your Google Cloud project ID
-  GAR_LOCATION: 'eu-west-2' # TODO: update to your region
-  GKE_CLUSTER: 'cluster-1' # TODO: update to your cluster name
-  GKE_ZONE: 'eu-west-2' # TODO: update to your cluster zone
+  PROJECT_ID: 'multi-k8s'
+  GAR_LOCATION: 'europe-west2'
+  GKE_CLUSTER: 'multi-cluster'
+  GKE_ZONE: 'europe-west2-a'
   DEPLOYMENT_NAME: 'gke-test' # TODO: update to your deployment name
   REPOSITORY: 'samples' # TODO: update to your Artifact Registry docker repository name
   IMAGE: 'static-site'
