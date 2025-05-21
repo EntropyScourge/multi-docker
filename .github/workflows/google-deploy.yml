@@ -36,7 +36,7 @@ name: 'Build and Deploy to GKE'
 on:
   push:
     branches:
-      - '"k8s"'
+      - 'k8s'
 
 env:
   PROJECT_ID: 'multi-k8s'
