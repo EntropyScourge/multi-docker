@@ -90,28 +90,30 @@ jobs:
 
       # Build the Docker image
       - name: 'Build and push Docker container'
+        # run: |-
+        #   DOCKER_TAG="${GAR_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY}/${IMAGE}:${GITHUB_SHA}"
+
+        #   docker build \
+        #     --tag "${DOCKER_TAG}" \
+        #     --build-arg GITHUB_SHA="${GITHUB_SHA}" \
+        #     --build-arg GITHUB_REF="${GITHUB_REF}" \
+        #     .
+
+        #   docker push "${DOCKER_TAG}"
         run: |-
-          DOCKER_TAG="${GAR_LOCATION}-docker.pkg.dev/${PROJECT_ID}/${REPOSITORY}/${IMAGE}:${GITHUB_SHA}"
+          sh ./deploy.sh
 
-          docker build \
-            --tag "${DOCKER_TAG}" \
-            --build-arg GITHUB_SHA="${GITHUB_SHA}" \
-            --build-arg GITHUB_REF="${GITHUB_REF}" \
-            .
+      # # Set up kustomize
+      # - name: 'Set up Kustomize'
+      #   run: |-
+      #     curl -sfLo kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.4.3/kustomize_v5.4.3_linux_amd64.tar.gz
+      #     chmod u+x ./kustomize
 
-          docker push "${DOCKER_TAG}"
-
-      # Set up kustomize
-      - name: 'Set up Kustomize'
-        run: |-
-          curl -sfLo kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv5.4.3/kustomize_v5.4.3_linux_amd64.tar.gz
-          chmod u+x ./kustomize
-
-      # Deploy the Docker image to the GKE cluster
-      - name: 'Deploy to GKE'
-        run: |-
-          # replacing the image name in the k8s template
-          ./kustomize edit set image LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA
-          ./kustomize build . | kubectl apply -f -
-          kubectl rollout status deployment/$DEPLOYMENT_NAME
-          kubectl get services -o wide
+      # # Deploy the Docker image to the GKE cluster
+      # - name: 'Deploy to GKE'
+      #   run: |-
+      #     # replacing the image name in the k8s template
+      #     ./kustomize edit set image LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$GITHUB_SHA
+      #     ./kustomize build . | kubectl apply -f -
+      #     kubectl rollout status deployment/$DEPLOYMENT_NAME
+      #     kubectl get services -o wide
