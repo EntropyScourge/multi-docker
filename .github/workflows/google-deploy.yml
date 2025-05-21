@@ -42,7 +42,7 @@ env:
   PROJECT_ID: 'multi-k8s-460408'
   GAR_LOCATION: 'europe-west2'
   GKE_CLUSTER: 'multi-cluster'
-  GKE_LOCATION: 'europe-west2-a'
+  GKE_LOCATION: 'europe-west2'
   DEPLOYMENT_NAME: 'gke-test' # TODO: update to your deployment name
   REPOSITORY: 'samples' # TODO: update to your Artifact Registry docker repository name
   IMAGE: 'static-site'
