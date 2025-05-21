@@ -39,14 +39,14 @@ on:
       - 'k8s'
 
 env:
-  PROJECT_ID: 'multi-k8s'
+  PROJECT_ID: 'multi-k8s-460408'
   GAR_LOCATION: 'europe-west2'
   GKE_CLUSTER: 'multi-cluster'
   GKE_ZONE: 'europe-west2-a'
   DEPLOYMENT_NAME: 'gke-test' # TODO: update to your deployment name
   REPOSITORY: 'samples' # TODO: update to your Artifact Registry docker repository name
   IMAGE: 'static-site'
-  WORKLOAD_IDENTITY_PROVIDER: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider' # TODO: update to your workload identity provider
+  # WORKLOAD_IDENTITY_PROVIDER: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider' # TODO: update to your workload identity provider
 
 jobs:
   setup-build-publish-deploy:
